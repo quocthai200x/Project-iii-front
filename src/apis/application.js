@@ -134,10 +134,26 @@ export const getByUserWithJob = async ({jobId}) =>{
 
 
 
-export const changeStatusApplication = async( {id, status }) =>{
+export const changeStatusApplication = async( {id, type, interviewIndex }) =>{
     try {
         let res = await axios.put("/application/change-status",{
-            id, status
+            id, type, interviewIndex
+        })
+        if(res.status == 200){
+            return res.data 
+        }else{
+            throw new Error(res.data)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+export const acceptOffer = async( {id }) =>{
+    try {
+        let res = await axios.put("/application/accept-to-work",{
+            id
         })
         if(res.status == 200){
             return res.data 

@@ -8,7 +8,7 @@
                 indicator-color="negative" align="left" narrow-indicator>
                 <q-tab class="q-mt-xs" name="job-apply" label="Ứng tuyển" />
                 <q-tab class="q-mt-xs" name="job-invite" label="Lời mời phỏng vấn" />
-                <!-- <q-tab class="q-mt-xs" name="job-pending" label="Đang chờ" /> -->
+                <q-tab class="q-mt-xs" name="job-pending" label="Đang chờ" />
                 <q-tab class="q-mt-xs" name="job-in-process" label="Chấp thuận phỏng vấn" />
                 <q-tab class="q-mt-xs" name="job-offer" label="Lời mời làm việc" />
                 <q-tab class="q-mt-xs" name="job-working" label="Đang làm việc" />
@@ -28,7 +28,12 @@
                        <JobInvite  v-model:applicationList="applicationList"></JobInvite>
                     </div>
                 </q-tab-panel>
-               
+                <q-tab-panel name="job-pending">
+                    <div class="tab-panel-container">
+                        <JobPending  v-model:applicationList="applicationList"></JobPending>
+                    </div>
+                </q-tab-panel>
+
                 <q-tab-panel name="job-in-process">
                     <div class="tab-panel-container">
                         <JobInProcess  v-model:applicationList="applicationList"></JobInProcess>
@@ -36,18 +41,18 @@
                 </q-tab-panel>
                 <q-tab-panel name="job-offer">
                     <div class="tab-panel-container">
-                        Đang offer
+                        <JobOffer  v-model:applicationList="applicationList"></JobOffer>
                     </div>
                 </q-tab-panel>
                 <q-tab-panel name="job-working">
                     <div class="tab-panel-container">
-                        Đang làm việc
+                        <JobWorking v-model:applicationList="applicationList"></JobWorking>
                     </div>
                 </q-tab-panel>
 
                 <q-tab-panel name="job-reject">
                     <div class="tab-panel-container">
-                        Đã từ chối
+                       <JobDenied v-model:applicationList="applicationList" ></JobDenied>
                     </div>
                 </q-tab-panel>
             </q-tab-panels>
@@ -60,6 +65,11 @@ import { useUserStore } from '@/stores/userStore';
 import JobApply from '@/components/AccountJob/JobApply.vue';
 import JobInvite from '@/components/AccountJob/JobInvite.vue';
 import JobInProcess from '@/components/AccountJob/JobInProcess.vue';
+import JobPending from '@/components/AccountJob/JobPending.vue';
+import JobOffer from '@/components/AccountJob/JobOffer.vue';
+import JobWorking from '@/components/AccountJob/JobWorking.vue';
+import JobDenied from '@/components/AccountJob/JobDenied.vue';
+
 import { getAllApplicationIn_User } from '@/apis/application';
 
 
@@ -67,7 +77,11 @@ export default {
     components:{
         JobApply,
         JobInvite,
-        JobInProcess
+        JobInProcess,
+        JobPending,
+        JobOffer,
+        JobDenied,
+        JobWorking,
     },
 
     data() {

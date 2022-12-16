@@ -145,7 +145,7 @@ export default {
                 apply({ jobName: this.jobDetail.info.name, companyId: this.companyData._id }).then(data => {
                     if (data) {
                         data.jobId = this.jobDetail
-                        this.userStore.pushJobApply(data)
+                        this.hasApplied = true;
                         this.message = "Bạn đã nộp hồ sơ"
 
                     } else {

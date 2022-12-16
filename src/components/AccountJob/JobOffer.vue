@@ -1,7 +1,7 @@
 <template >
     <div>
         <div v-for="(application, index) in applicationList" :key="'job-apply-' + index">
-            <div v-if="application.createdBy == 1 && application.status.value == turnInValue">
+            <div v-if="application.status.value == offerValue">
                 <div class="row q-gutter-md">
                     <div class="col-2">
                         <q-img :src="application.companyId.info.logo"></q-img>
@@ -54,7 +54,7 @@
     </div>
 </template>
 <script>
-import { approveByUser, rejectByUser } from "../../apis/application"
+import { acceptOffer, rejectByUser } from "../../apis/application"
 import { useQuasar } from "quasar"
 import {applicationDictionary} from "../../assets/dictionary/application"
 
@@ -63,13 +63,13 @@ export default {
     data() {
         return {
             $q: useQuasar(),
-            turnInValue:  applicationDictionary.status.turnIn.value
+            offerValue:  applicationDictionary.status.offer.value
         }
     },
     methods: {
         accept(index) {
             this.applicationList[index].isLoading= true
-            approveByUser({ applicationId: this.applicationList[index]._id }).then(data => {
+            acceptOffer({ id: this.applicationList[index]._id }).then(data => {
                 if (data) {
                     this.applicationList[index].status = data.status
                     this.$q.notify({

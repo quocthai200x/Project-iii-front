@@ -1,7 +1,7 @@
 <template >
     <div>
         <div v-for="(application, index) in applicationList" :key="'job-apply-' + index">
-            <div v-if="application.createdBy == 0 && application.status.value == turnInValue">
+            <div v-if="application.status.value == notQualifyValue || application.status.value ==rejectByUserValue">
                 <div class="row q-gutter-md">
                     <div class="col-2">
                        <q-img :src="application.companyId.info.logo"></q-img>
@@ -56,7 +56,9 @@ export default {
     props: {applicationList: Array},
     data() {
         return {
-           turnInValue:  applicationDictionary.status.turnIn.value
+           notQualifyValue:  applicationDictionary.status.notQualify.value,
+           rejectByUserValue:  applicationDictionary.status.rejectByUser.value,
+
         }
     },
 

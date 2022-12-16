@@ -1,0 +1,104 @@
+Date : 2022-12-16 01:46:52
+Directory : f:\BK\year5.1\project 3\front-end\src
+Total : 58 files,  63945 codes, 128 comments, 563 blanks, all 64636 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JavaScript |         20 |     59,680 |         17 |        125 |     59,822 |
+| Vue        |         35 |      4,244 |        111 |        435 |      4,790 |
+| SCSS       |          1 |         11 |          0 |          2 |         13 |
+| Sass       |          1 |          9 |          0 |          1 |         10 |
+| XML        |          1 |          1 |          0 |          0 |          1 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                         | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                            |         58 |     63,945 |        128 |        563 |     64,636 |
+| apis                                                                                         |          8 |        511 |          5 |         59 |        575 |
+| assets                                                                                       |          5 |     58,873 |          0 |         26 |     58,899 |
+| assets\dictionary                                                                            |          4 |     58,872 |          0 |         26 |     58,898 |
+| cloudinary                                                                                   |          1 |         19 |          0 |          4 |         23 |
+| components                                                                                   |         22 |      3,024 |         60 |        275 |      3,359 |
+| components\AccountJob                                                                        |          4 |        326 |          1 |         29 |        356 |
+| components\AccountManagement                                                                 |          8 |      1,721 |         24 |        130 |      1,875 |
+| components\JobDetail                                                                         |          5 |        517 |         24 |         40 |        581 |
+| components\JobDetail\Tabs                                                                    |          3 |        255 |         16 |         14 |        285 |
+| example                                                                                      |          1 |         78 |          0 |          0 |         78 |
+| layouts                                                                                      |          2 |        176 |         21 |         34 |        231 |
+| router                                                                                       |          1 |         65 |          5 |         16 |         86 |
+| stores                                                                                       |          2 |        105 |          1 |         14 |        120 |
+| views                                                                                        |         10 |      1,003 |         30 |        117 |      1,150 |
+| views\Account                                                                                |          2 |        123 |          0 |         16 |        139 |
+| views\Auth                                                                                   |          3 |        248 |         12 |         29 |        289 |
+| views\Job                                                                                    |          2 |        253 |          9 |         30 |        292 |
+| views\NotFound                                                                               |          1 |          9 |          0 |          4 |         13 |
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                     | language   | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| f:\BK\year5.1\project 3\front-end\src\App.vue                                                | Vue        |         41 |          0 |          9 |         50 |
+| f:\BK\year5.1\project 3\front-end\src\apis\application.js                                    | JavaScript |        177 |          0 |         20 |        197 |
+| f:\BK\year5.1\project 3\front-end\src\apis\auth.js                                           | JavaScript |        107 |          3 |          7 |        117 |
+| f:\BK\year5.1\project 3\front-end\src\apis\company.js                                        | JavaScript |         15 |          0 |          3 |         18 |
+| f:\BK\year5.1\project 3\front-end\src\apis\job.js                                            | JavaScript |         79 |          0 |         13 |         92 |
+| f:\BK\year5.1\project 3\front-end\src\apis\role.js                                           | JavaScript |         29 |          0 |          5 |         34 |
+| f:\BK\year5.1\project 3\front-end\src\apis\search.js                                         | JavaScript |         29 |          1 |          5 |         35 |
+| f:\BK\year5.1\project 3\front-end\src\apis\test.js                                           | JavaScript |         22 |          1 |          1 |         24 |
+| f:\BK\year5.1\project 3\front-end\src\apis\user.js                                           | JavaScript |         53 |          0 |          5 |         58 |
+| f:\BK\year5.1\project 3\front-end\src\assets\dictionary\application.js                       | JavaScript |         40 |          0 |          2 |         42 |
+| f:\BK\year5.1\project 3\front-end\src\assets\dictionary\job.js                               | JavaScript |        448 |          0 |         20 |        468 |
+| f:\BK\year5.1\project 3\front-end\src\assets\dictionary\location.js                          | JavaScript |     58,369 |          0 |          2 |     58,371 |
+| f:\BK\year5.1\project 3\front-end\src\assets\dictionary\role.js                              | JavaScript |         15 |          0 |          2 |         17 |
+| f:\BK\year5.1\project 3\front-end\src\assets\vue.svg                                         | XML        |          1 |          0 |          0 |          1 |
+| f:\BK\year5.1\project 3\front-end\src\axios.js                                               | JavaScript |          6 |          0 |          1 |          7 |
+| f:\BK\year5.1\project 3\front-end\src\cloudinary\index.js                                    | JavaScript |         19 |          0 |          4 |         23 |
+| f:\BK\year5.1\project 3\front-end\src\components\AccountJob\JobApply.vue                     | Vue        |         58 |          0 |          6 |         64 |
+| f:\BK\year5.1\project 3\front-end\src\components\AccountJob\JobInProcess.vue                 | Vue        |         58 |          0 |          6 |         64 |
+| f:\BK\year5.1\project 3\front-end\src\components\AccountJob\JobInvite.vue                    | Vue        |        116 |          0 |          4 |        120 |
+| f:\BK\year5.1\project 3\front-end\src\components\AccountJob\index.vue                        | Vue        |         94 |          1 |         13 |        108 |
+| f:\BK\year5.1\project 3\front-end\src\components\AccountManagement\ExperiencesCard.vue       | Vue        |        296 |          2 |         20 |        318 |
+| f:\BK\year5.1\project 3\front-end\src\components\AccountManagement\LanguageCard.vue          | Vue        |        234 |          3 |         20 |        257 |
+| f:\BK\year5.1\project 3\front-end\src\components\AccountManagement\PersonnalInfoCard.vue     | Vue        |        318 |          8 |         22 |        348 |
+| f:\BK\year5.1\project 3\front-end\src\components\AccountManagement\QuickIntroCard.vue        | Vue        |        212 |          3 |         10 |        225 |
+| f:\BK\year5.1\project 3\front-end\src\components\AccountManagement\RecommendJob.vue          | Vue        |         75 |          3 |         15 |         93 |
+| f:\BK\year5.1\project 3\front-end\src\components\AccountManagement\SkillCard.vue             | Vue        |        172 |          2 |         13 |        187 |
+| f:\BK\year5.1\project 3\front-end\src\components\AccountManagement\StudyCard.vue             | Vue        |        296 |          2 |         24 |        322 |
+| f:\BK\year5.1\project 3\front-end\src\components\AccountManagement\TargetDescriptionCard.vue | Vue        |        118 |          1 |          6 |        125 |
+| f:\BK\year5.1\project 3\front-end\src\components\CardJobDetail.vue                           | Vue        |        176 |          3 |         21 |        200 |
+| f:\BK\year5.1\project 3\front-end\src\components\CarouselBanner.vue                          | Vue        |         38 |          1 |          6 |         45 |
+| f:\BK\year5.1\project 3\front-end\src\components\CarouselJob.vue                             | Vue        |         50 |          3 |          9 |         62 |
+| f:\BK\year5.1\project 3\front-end\src\components\CarouselTopArea.vue                         | Vue        |        100 |          2 |         20 |        122 |
+| f:\BK\year5.1\project 3\front-end\src\components\JobDetail\CardJobInfo.vue                   | Vue        |        187 |          7 |         16 |        210 |
+| f:\BK\year5.1\project 3\front-end\src\components\JobDetail\TabJobInfo.vue                    | Vue        |         75 |          1 |         10 |         86 |
+| f:\BK\year5.1\project 3\front-end\src\components\JobDetail\Tabs\TabDetailJob.vue             | Vue        |        144 |          5 |          9 |        158 |
+| f:\BK\year5.1\project 3\front-end\src\components\JobDetail\Tabs\TabIntroCompany.vue          | Vue        |         55 |          0 |          4 |         59 |
+| f:\BK\year5.1\project 3\front-end\src\components\JobDetail\Tabs\TabOtherJobs.vue             | Vue        |         56 |         11 |          1 |         68 |
+| f:\BK\year5.1\project 3\front-end\src\components\SearchForm.vue                              | Vue        |         96 |          2 |         20 |        118 |
+| f:\BK\year5.1\project 3\front-end\src\config.js                                              | JavaScript |          4 |          1 |          0 |          5 |
+| f:\BK\year5.1\project 3\front-end\src\example\jobDetailExample.js                            | JavaScript |         78 |          0 |          0 |         78 |
+| f:\BK\year5.1\project 3\front-end\src\layouts\Drawer.vue                                     | Vue        |        163 |         21 |         27 |        211 |
+| f:\BK\year5.1\project 3\front-end\src\layouts\LayoutFake.vue                                 | Vue        |         13 |          0 |          7 |         20 |
+| f:\BK\year5.1\project 3\front-end\src\main.js                                                | JavaScript |         20 |          5 |          5 |         30 |
+| f:\BK\year5.1\project 3\front-end\src\quasar-variables.sass                                  | Sass       |          9 |          0 |          1 |         10 |
+| f:\BK\year5.1\project 3\front-end\src\router\index.js                                        | JavaScript |         65 |          5 |         16 |         86 |
+| f:\BK\year5.1\project 3\front-end\src\stores\searchStore.js                                  | JavaScript |         34 |          0 |          7 |         41 |
+| f:\BK\year5.1\project 3\front-end\src\stores\userStore.js                                    | JavaScript |         71 |          1 |          7 |         79 |
+| f:\BK\year5.1\project 3\front-end\src\style.scss                                             | SCSS       |         11 |          0 |          2 |         13 |
+| f:\BK\year5.1\project 3\front-end\src\views\Account\AccountApplication.vue                   | Vue        |         50 |          0 |          8 |         58 |
+| f:\BK\year5.1\project 3\front-end\src\views\Account\AccountManagementPage.vue                | Vue        |         73 |          0 |          8 |         81 |
+| f:\BK\year5.1\project 3\front-end\src\views\Auth\ForgotPassword.vue                          | Vue        |         63 |          8 |          6 |         77 |
+| f:\BK\year5.1\project 3\front-end\src\views\Auth\SignInPage.vue                              | Vue        |         93 |          2 |          9 |        104 |
+| f:\BK\year5.1\project 3\front-end\src\views\Auth\SignUpPage.vue                              | Vue        |         92 |          2 |         14 |        108 |
+| f:\BK\year5.1\project 3\front-end\src\views\Job\JobDetailPage.vue                            | Vue        |        126 |          3 |         17 |        146 |
+| f:\BK\year5.1\project 3\front-end\src\views\Job\SearchJobsPage.vue                           | Vue        |        127 |          6 |         13 |        146 |
+| f:\BK\year5.1\project 3\front-end\src\views\LandingPage.vue                                  | Vue        |        176 |          2 |         18 |        196 |
+| f:\BK\year5.1\project 3\front-end\src\views\NotFound\NotFound.vue                            | Vue        |          9 |          0 |          4 |         13 |
+| f:\BK\year5.1\project 3\front-end\src\views\TestPage.vue                                     | Vue        |        194 |          7 |         20 |        221 |
+| Total                                                                                        |            |     63,945 |        128 |        563 |     64,636 |
++----------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

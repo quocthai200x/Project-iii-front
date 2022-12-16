@@ -1,7 +1,7 @@
 <template >
     <div>
         <div v-for="(application, index) in applicationList" :key="'job-apply-' + index">
-            <div v-if="!application.isClose && application.isApproved && application.status.value < 3">
+            <div v-if=" application.status.value == interviewValue">
                 <div class="row q-gutter-md">
                     <div class="col-2">
                        <q-img :src="application.companyId.info.logo"></q-img>
@@ -38,9 +38,12 @@
                         <div class="text-grey-6">
                             <span>Đã tạo {{  $moment().diff($moment(application.createdAt), 'days')>0? $moment().diff($moment(application.createdAt), 'days')+" ngày trước":"trong hôm nay"}}</span>
                         </div>
+                        <div class="text-negative" v-if="application.jobId.info.recruitmentProcess.length>0">
+                            <i>Đang tiến hành: {{interviewValue+"."+(application.status.note.value+1)+' '+application.status.note.name}}</i>
+                        </div>
                     </div>
                     <div class="col-2">
-                       a
+                   
                     </div>
                 </div>
                 <q-separator class="q-my-md"></q-separator>
@@ -49,12 +52,16 @@
     </div>
 </template>
 <script>
+import {applicationDictionary} from "../../assets/dictionary/application"
 
 
 export default {
     props: {applicationList: Array},
     data() {
+        return{
+            interviewValue:  applicationDictionary.status.interview.value
 
+        }
     },
 
 }
