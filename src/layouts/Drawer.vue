@@ -101,22 +101,14 @@ export default {
         this.menuList = [
           {
             icon: `img:${this.userStore.getUserState.info.avatar}`,
-            label: 'Hồ sơ',
+            label: 'Cá nhân',
             separator: false,
             link: "/tong-quan-tai-khoan",
             name: "Account Management"
           },
-          // {
-          //   icon: 'badge',
-          //   label: 'Hồ sơ',
-          //   separator: false,
-          //   link: "/ho-so",
-          //   name: "Profile Page"
-
-          // },
           {
             icon: 'business',
-            label: 'Công ty của tôi',
+            label: 'Hồ sơ công ty',
             separator: false,
             link: "/tong-quan-tai-khoan/cong-ty-cua-toi",
             name: "Profile Company Page"
@@ -124,7 +116,7 @@ export default {
           },
           {
             icon: 'work',
-            label: 'Việc làm của tôi',
+            label: 'Hồ sơ việc làm',
             separator: true,
             link: "/tong-quan-tai-khoan/viec-lam-cua-toi",
             name: "Account My Company"
@@ -141,9 +133,17 @@ export default {
           {
             icon: 'search',
             label: 'Việc làm',
-            separator: true,
+            separator: false,
             link: "/viec-lam?",
             name: "Search Job"
+
+          },
+          {
+            icon: 'business',
+            label: 'Công ty',
+            separator: true,
+            link: "/cong-ty?",
+            name: "Search Company"
 
           },
           {
@@ -186,6 +186,14 @@ export default {
             separator: false,
             link: "/viec-lam?",
             name: "Search Job"
+
+          },
+          {
+            icon: 'business',
+            label: 'Công ty',
+            separator: true,
+            link: "/cong-ty?",
+            name: "Search Company"
 
           },
         ]

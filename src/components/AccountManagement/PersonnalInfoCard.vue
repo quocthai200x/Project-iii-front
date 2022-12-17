@@ -228,7 +228,7 @@ export default {
             }
         },
         "district"(newValue, oldValue) {
-            if (newValue != oldValue && oldValue) {
+            if (newValue != oldValue) {
 
                 this.ward = "";
                 this.getOptionWard()

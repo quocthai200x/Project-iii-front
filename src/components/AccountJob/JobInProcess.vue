@@ -41,6 +41,9 @@
                         <div class="text-negative" v-if="application.jobId.info.recruitmentProcess.length>0">
                             <i>Đang tiến hành: {{interviewValue+"."+(application.status.note.value+1)+' '+application.status.note.name}}</i>
                         </div>
+                        <div class="text-negative" v-else>
+                            <i>Đang tiến hành: {{interviewValue+". Phỏng vấn(liên hệ để hỏi kĩ hơn về quy trình)"}}</i>
+                        </div>
                     </div>
                     <div class="col-2">
                    

@@ -168,7 +168,7 @@ export const acceptOffer = async( {id }) =>{
 
 export const userComment = async( {comment, id }) =>{
     try {
-        let res = await axios.put("/application/user-comment",{
+        let res = await axios.post("/application/user-comment",{
             id, comment
         })
         if(res.status == 200){
@@ -184,7 +184,7 @@ export const userComment = async( {comment, id }) =>{
 
 export const companyComment = async( {comment, id }) =>{
     try {
-        let res = await axios.put("/application/company-comment",{
+        let res = await axios.post("/application/company-comment",{
             id, comment
         })
         if(res.status == 200){

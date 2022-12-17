@@ -108,6 +108,7 @@ export default {
                 if(data){
                     this.applicationList = data.map(ele=>{
                         ele.isLoading= false;
+                        ele.isShowDesc = false;
                         return (ele)
                     })
                 }
