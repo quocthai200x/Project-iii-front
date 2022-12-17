@@ -33,13 +33,14 @@
     </div>
 </template>
 <script>
-import { getJobByNameAndCompanyId, getOtherJobOfCompany } from "@/apis/job"
+import { getJobByNameAndCompanyId, updateViewNumber } from "@/apis/job"
 import { searchJob } from "@/apis/search"
 import CarouselBanner from "@/components/CarouselBanner.vue"
 import CardJobInfoVue from '@/components/JobDetail/CardJobInfo.vue'
 import TabJobInfoVue from '@/components/JobDetail/TabJobInfo.vue'
 import DrawerVue from "@/layouts/Drawer.vue"
 import CardJobDetailVue from "@/components/CardJobDetail.vue"
+import { useUserStore } from '../../stores/userStore'
 
 export default {
     components: {
@@ -58,12 +59,14 @@ export default {
                 phone: "",
                 size: "",
                 video: "",
-                workingArea: []
+                workingArea: [],
+                bannerImage: ''
             }
         }
         let jobDetail = {
             info: {
                 desc: "",
+                benefits: [],
                 emailReceive: [],
                 keyword: [],
                 languageRecruitment: [],
@@ -88,11 +91,14 @@ export default {
             viewed: 0,
             _id: "",
         }
-        return { companyData, jobDetail, keyUpdateUI: 0, loading: true, othersJob: [], similarJob: [] }
+        return { userStore: useUserStore(),companyData, jobDetail, keyUpdateUI: 0, loading: true, othersJob: [], similarJob: [] }
     },
     created() {
         this.$emit("update:layout", DrawerVue)
         this._getJobDetail({ jobName_companyId: this.$route.params.jobName_companyId })
+        if(this.userStore.getUserState._id){
+            updateViewNumber()
+        }
 
     },
     watch: {

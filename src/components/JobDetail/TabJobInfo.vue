@@ -40,9 +40,9 @@
 </template>
 <script>
 import { ref } from 'vue'
-import TabDetailJobVue from '@/components/JobDetail/Tabs/TabDetailJob.vue'
-import TabIntroCompanyVue from '@/components/JobDetail/Tabs/TabIntroCompany.vue'
-import TabOtherJobsVue from '@/components/JobDetail/Tabs/TabOtherJobs.vue'
+import TabDetailJobVue from '@/components/Tabs/TabDetailJob.vue'
+import TabIntroCompanyVue from '@/components/Tabs/TabIntroCompany.vue'
+import TabOtherJobsVue from '@/components/Tabs/TabOtherJobs.vue'
 import {getOtherJobOfCompany} from "@/apis/job"
 
 export default {
@@ -67,7 +67,7 @@ export default {
     methods:{
         _getOtherJobs({ jobName_companyId }) {
             getOtherJobOfCompany({ jobName_companyId }).then(data => {
-                this.otherJobs = data;
+                this.otherJobs = data.filter(job=> new Date(job.info.outdate) >= new Date(Date.now()))
                 // console.log(this.otherJobs)
             })
         }

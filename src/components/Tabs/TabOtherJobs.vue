@@ -40,9 +40,6 @@ export default {
         otherJobs: Array
     },
     data() {
-        return {
-            otherJobs:this.otherJobs
-        }
     },
     // created(){
     //     this._getOtherJobs({jobName_companyId: this.$route.params.jobName_companyId })

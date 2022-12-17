@@ -19,14 +19,25 @@
                         <div class="text-grey-6">
                             <span v-for="(location, indexLocation) in application.jobId.info.workingAddress"
                                 :key="index + '-' + location.province + '-' + indexLocation">
-                                {{ indexLocation < application.jobId.info.workingAddress.length - 1 ? location.province + ', '
-                                        : location.province
+                                {{ indexLocation < application.jobId.info.workingAddress.length - 1 ? location.province
+                                        + ', ' : location.province
                                 }} </span>
                         </div>
                         <div class="text-warning">
                             <div v-if="application.jobId.info.salaryRate.isVisible">
                                 <span>
-                                    {{ application.jobId.info.salaryRate.from + "$" + " - "+application.jobId.info.salaryRate.to+"$"}}
+                                    {{ application.jobId.info.salaryRate.from }}
+                                </span>
+                                <span>
+                                    $
+                                </span>
+                                <span>{{ " - " }}</span>
+                                <span>
+                                    {{ application.jobId.info.salaryRate.to }}
+
+                                </span>
+                                <span>
+                                    $
                                 </span>
                             </div>
                             <div v-else>
@@ -36,14 +47,23 @@
                             </div>
                         </div>
                         <div class="text-grey-6">
-                            <span>Đã tạo {{ $moment().diff($moment(application.createdAt), 'days') > 0 ?$moment().diff($moment(application.createdAt), 'days') + " ngày trước" : "trong hôm nay"}}</span>
+                            <span>
+                                Đã tạo {{ " " }}
+                            </span>
+                            <span v-if="$moment().diff($moment(application.createdAt), 'days') > 0">
+                                {{ $moment().diff($moment(application.createdAt), 'days') + "ngày trước" }}
+                            </span>
+                            <span v-else>
+                                trong hôm nay
+                            </span>
                         </div>
                     </div>
                     <div class="col-2 ">
                         <div class="col q-gutter-xs">
-                            <q-btn :disable="application.isLoading" @click="accept(index)" class="fit" color="negative" outline label="Nhận"></q-btn>
-                            <q-btn  :disable="application.isLoading" @click="reject(index)" class="fit" color="negative" unelevated
-                                label="Từ chối"></q-btn>
+                            <q-btn :disable="application.isLoading" @click="accept(index)" class="fit" color="negative"
+                                outline label="Nhận"></q-btn>
+                            <q-btn :disable="application.isLoading" @click="reject(index)" class="fit" color="negative"
+                                unelevated label="Từ chối"></q-btn>
                         </div>
 
                     </div>
@@ -56,19 +76,19 @@
 <script>
 import { acceptOffer, rejectByUser } from "../../apis/application"
 import { useQuasar } from "quasar"
-import {applicationDictionary} from "../../assets/dictionary/application"
+import { applicationDictionary } from "../../assets/dictionary/application"
 
 export default {
     props: { applicationList: Array },
     data() {
         return {
             $q: useQuasar(),
-            offerValue:  applicationDictionary.status.offer.value
+            offerValue: applicationDictionary.status.offer.value
         }
     },
     methods: {
         accept(index) {
-            this.applicationList[index].isLoading= true
+            this.applicationList[index].isLoading = true
             acceptOffer({ id: this.applicationList[index]._id }).then(data => {
                 if (data) {
                     this.applicationList[index].status = data.status
@@ -86,15 +106,15 @@ export default {
                         icon: 'report',
                     })
                 }
-                this.applicationList[index].isLoading= false
+                this.applicationList[index].isLoading = false
             })
-            
+
         },
         reject(index) {
-            this.applicationList[index].isLoading= true
+            this.applicationList[index].isLoading = true
             rejectByUser({ applicationId: this.applicationList[index]._id }).then(data => {
                 if (data) {
-                   
+
                     this.applicationList[index].status = data.status
                     this.$q.notify({
                         message: 'Từ chối thành công',
@@ -110,7 +130,7 @@ export default {
                         icon: 'report',
                     })
                 }
-                this.applicationList[index].isLoading= false
+                this.applicationList[index].isLoading = false
             })
         }
     }

@@ -60,6 +60,11 @@ const routes = [
         component: ()=> import('../views/Company/SearchCompanyPage.vue')
     },
     {
+        path:"/cong-ty/:companyName",
+        name: "Company Detail",
+        component: ()=> import('../views/Company/CompanyDetailPage.vue')
+    },
+    {
         path: '/test',
         name: "Test",
         component: () => import('../views/TestPage.vue')

@@ -69,9 +69,12 @@
                         <span v-else>$ Thương lượng</span>
                     </div>
                     <div class="jd-gray-color">
-                        <span>{{ jobDetail.viewed }} lượt xem - </span><span>hết hạn trong {{
+                        <span>{{ jobDetail.viewed }} lượt xem - </span>
+                        <span v-if="!hasOutdate">hết hạn trong {{
                                 $moment(jobDetail.info.outdate).diff($moment(), 'days') + 1
-                        }} ngày</span>
+                        }} ngày
+                        </span>
+                        <span v-else>Đã hết hạn</span>
                     </div>
                 </q-card-section>
                 <q-card-section class='col-3'>
@@ -80,11 +83,11 @@
                             size="md" icon="favorite_border" />
                         <q-btn v-else @click="toggleFavouriteJobs" unelevated color="negative" size="md"
                             icon="favorite" />
-                        <q-btn @click="applyJob" :loading="loadingButton" :disable="hasApplied" unelevated
+                        <q-btn @click="applyJob" :loading="loadingButton" :disable="hasApplied || hasOutdate" unelevated
                             color="negative" padding="xs lg" size="md" label="Nộp đơn" />
 
                     </div>
-                    <div v-if="hasApplied" class="text-negative row justify-end">
+                    <div v-if="hasApplied || hasOutdate" class="text-negative row justify-end">
                         <span>
                             {{ message }}
                         </span>
@@ -113,11 +116,17 @@ export default {
             hadFollowedJob: false,
             userStore: useUserStore(),
             hasApplied: false,
+            hasOutdate: false,
             loadingButton: false,
             message: "",
         }
     },
     created() {
+        if (new Date(this.jobDetail.info.outdate) < new Date(Date.now())) {
+            // this.hasApplied = true;
+            this.hasOutdate = true;
+            // this.message = "Đã hết hạn"
+        }
         if(this.userStore.getUserState._id){
             getByUserWithJob({jobId: this.jobDetail._id }).then(data=>{
                 if(data){

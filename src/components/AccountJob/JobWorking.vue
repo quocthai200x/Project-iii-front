@@ -26,7 +26,18 @@
                         <div class="text-warning">
                             <div v-if="application.jobId.info.salaryRate.isVisible">
                                 <span>
-                                    {{ application.jobId.info.salaryRate.from + "$" + "- "+application.jobId.info.salaryRate.to+"$"}}
+                                    {{ application.jobId.info.salaryRate.from }}
+                                </span>
+                                <span>
+                                    $
+                                </span>
+                                <span>{{" - "}}</span>
+                                <span>
+                                    {{ application.jobId.info.salaryRate.to }}
+
+                                </span>
+                                <span>
+                                    $
                                 </span>
                             </div>
                             <div v-else>
@@ -36,7 +47,15 @@
                             </div>
                         </div>
                         <div class="text-grey-6">
-                            <span>Đã tạo {{ $moment().diff($moment(application.createdAt), 'days') > 0?$moment().diff($moment(application.createdAt), 'days') + " ngày trước" : "trong hôm nay"}}</span>
+                            <span>
+                                Đã tạo {{ " " }}
+                            </span>
+                            <span v-if="$moment().diff($moment(application.createdAt), 'days') > 0">
+                                {{ $moment().diff($moment(application.createdAt), 'days') + "ngày trước" }}
+                            </span>
+                            <span v-else>
+                                trong hôm nay
+                            </span>
                         </div>
                     </div>
                     <div class="col-2 col">

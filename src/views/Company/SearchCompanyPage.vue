@@ -15,7 +15,7 @@
                     </q-input>
                     <q-btn label="Tìm" type="submit" unelevated color="negative" />
                 </q-form>
-                <div>
+                <div v-if="!loading">
                     <q-card flat class="q-pa-md q-gutter-xs">
                         <div class="text-h6 text-weight-medium">Kết quả tìm kiếm</div>
                         <div>
@@ -32,10 +32,13 @@
                             <span>
                                 <strong>
 
-                                    {{ ' "' + text + '"' }}
+                                    {{ ' "' + searchTextAfter + '"' }}
                                 </strong>
                             </span>
                         </div>
+                        <q-pagination v-if="count != 0" v-model="pageNumber" :max="count / 30 + 1" :max-pages="6"
+                            boundary-numbers outline color="negative" active-design="unelevated" active-color="negative"
+                            active-text-color="white" />
                         <div class="row">
                             <q-card-section class="col-6 q-pr-xs" v-for="(company, index) in data"
                                 :key="'company-' + index">
@@ -46,16 +49,18 @@
                                     <div class="col-8">
                                         <div>
                                             <router-link :to="'/cong-ty/' + company.info.name">
-                                                <span class="hover cursor-pointer text-bold">{{company.info.name}}</span>
+                                                <span class="hover cursor-pointer text-bold">{{ company.info.name
+                                                }}</span>
                                             </router-link>
                                         </div>
                                         <div class="text-caption">
-                                            <span v-for="(area, indexArea) in company.info.workingArea" :key="'area-'+indexArea">
-                                                <span v-if="indexArea<company.info.workingArea.length + 1">
-                                                    {{area.name + ", "}}
+                                            <span v-for="(area, indexArea) in company.info.workingArea"
+                                                :key="'area-' + indexArea">
+                                                <span v-if="indexArea < company.info.workingArea.length - 1">
+                                                    {{ area.name + ", " }}
                                                 </span>
                                                 <span v-else>
-                                                    {{area.name}}
+                                                    {{ area.name }}
                                                 </span>
                                             </span>
                                         </div>
@@ -65,6 +70,20 @@
                         </div>
                     </q-card>
                 </div>
+                <div v-else>
+                    <div class="row q-pa-md fit ">
+                        <div class="col-4" v-for="item, index in Array(10)" :key="index + 'lloading'">
+                            <div class="row q-my-xs">
+                                <q-skeleton type="rect" width="100px" height="100px"></q-skeleton>
+                                <div class="q-mx-sm">
+                                    <q-skeleton type="text" height="32px" width="100px"></q-skeleton>
+                                    <q-skeleton type="text" height="32px" width="180px"></q-skeleton>
+                                    <q-skeleton type="text" height="32px" width="180px"></q-skeleton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -73,6 +92,7 @@
 import DrawerVue from '../../layouts/Drawer.vue'
 import { searchCompany } from "../../apis/search"
 import { useQuasar } from 'quasar'
+import { ref } from 'vue'
 
 export default {
     data() {
@@ -81,11 +101,20 @@ export default {
             $q: useQuasar(),
             count: 0,
             data: [],
+            pageNumber: ref(1),
+            searchTextAfter: "",
+            loading: true,
         }
     },
     watch: {
         "$route.query.keyword"(newValue, oldValue) {
             if (newValue != oldValue) {
+                this.getCompanyByKeyword();
+            }
+        },
+        pageNumber(newValue, oldValue) {
+            if (newValue != oldValue) {
+                this.$router.push(`/cong-ty?keyword=${this.text}&pageNumber=${this.pageNumber - 1}`)
                 this.getCompanyByKeyword();
             }
         }
@@ -103,13 +132,21 @@ export default {
             }
         },
         getCompanyByKeyword() {
+            this.loading = true;
             let { keyword, pageNumber } = this.$route.query
+            if (!keyword) {
+                keyword = ""
+            }
+            if (!pageNumber) {
+                pageNumber = 0
+            }
             this.text = keyword;
             searchCompany({ keyword, pageNumber, limit: 30 }).then(companies => {
                 if (companies) {
 
                     this.count = companies.total;
-                    this.data = companies.data
+                    this.data = companies.data;
+                    this.searchTextAfter = keyword
                 }
                 this.$q.notify({
                     message: 'Tìm kiếm hoàn thành',
@@ -117,15 +154,16 @@ export default {
                     position: "bottom-right",
                     icon: 'check_circle',
                 })
-                console.log(companies)
+                this.loading = false
+                // console.log(companies)
             })
         }
     }
 }
 </script>
 <style lang="scss">
-    .hover:hover{
-        transition: all 200ms;
-        color: $warning;
-    }
+.hover:hover {
+    transition: all 200ms;
+    color: $warning;
+}
 </style>

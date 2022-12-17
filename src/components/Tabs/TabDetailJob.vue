@@ -2,12 +2,15 @@
     <div class="q-mx-lg q-my-sm row q-gutter-lg justify-between">
         <div class="col-7">
             <div class='q-mb-xl'>
-                <div v-if="companyData.info.benefits.length > 0">
+                <div v-if="jobDetail.info.benefits.length > 0">
                     <div class="text-h5 q-mb-xs">Các phúc lợi dành cho bạn</div>
-                    <div class="q-mb-xs" v-for="(item, index) in companyData.info.benefits" :key="'benefits' + index">
-                        <q-icon name="paid" color="black" size="24px" class="q-mr-sm" />
-                        <span class="text-weight-medium">
-                            {{ item }}
+                    <div class="q-mb-xs" v-for="(item, index) in jobDetail.info.benefits" :key="'benefits' + index">
+                        <q-icon :name="item.svg" color="black" size="24px" class="q-mr-sm" />
+                        <span class="text-weight-medium cursor-pointer">
+                            {{ item.label }}
+                            <q-tooltip :delay="100" anchor="center end" self="center left">
+                            {{ item.desc }}
+                        </q-tooltip>
                         </span>
                     </div>
                 </div>
@@ -15,14 +18,14 @@
             <div class='q-mb-xl'>
                 <div class="text-h5 q-mb-xs">Mô tả công việc</div>
                 <div>
-                    <span class="text-justify	">{{ jobDetail.info.desc }}</span>
+                    <span class="text-justify" v-html="jobDetail.info.desc"></span>
                 </div>
 
             </div>
             <div class='q-mb-xl'>
                 <div class="text-h5 q-mb-xs">Yêu cầu công việc</div>
                 <div>
-                    <span class="text-justify	">{{ jobDetail.info.requirement }}</span>
+                    <span class="text-justify" v-html=" jobDetail.info.requirement"></span>
                 </div>
 
             </div>

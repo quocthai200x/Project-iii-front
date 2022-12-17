@@ -1,45 +1,61 @@
 <template >
-   <div class="bg-grey-1">
+  <div class="bg-grey-1 ">
 
     <CarouselBanner :arrayImage="array"></CarouselBanner>
     <div class="row p-container">
+      <div class="q-mt-xl full-width row ">
 
-      <div v-if="!loading" class="q-mt-xl">
-        <div class="q-ml-md">
-          <span class="text-subtitle1"><strong>{{ totalResult }}</strong> việc làm phù hợp</span>
-        </div>
-        <div class=" flex flex-center">
-          <q-pagination v-if="totalResult != 0" v-model="current" :max="totalResult / 50 + 1" :max-pages="6"
-            boundary-numbers outline color="negative" active-design="unelevated" active-color="negative"
-            active-text-color="white" />
-        </div>
+        <div class="col-8 q-pr-md">
 
-        <q-list separator class="fit">
-          <q-item dense>
-            <q-item-section>
+          <div v-if="!loading" class="">
+            <div class=" row justify-between">
+              <div class="q-ml-md">
+                <span class="text-subtitle1"><strong>{{ totalResult }}</strong> việc làm phù hợp</span>
+              </div>
+              <div class=" flex flex-center q-mr-md">
+                <q-pagination v-if="totalResult != 0" v-model="current" :max="totalResult / 50 + 1" :max-pages="6"
+                  boundary-numbers outline color="negative" active-design="unelevated" active-color="negative"
+                  active-text-color="white" />
+              </div>
+            </div>
 
-              <CardJobDetail class="q-my-sm" v-for="(item, index) in searchResult" :key="item.info.name + index"
-                :isMinimize="false" :isHot="false" :jobDetail="item"></CardJobDetail>
-            </q-item-section>
-          </q-item>
-          <div class=" flex flex-center">
-            <q-pagination v-model="current" v-if="totalResult != 0" :max="totalResult / 50 + 1" :max-pages="6"
-              boundary-numbers outline color="negative" active-design="unelevated" active-color="negative"
-              active-text-color="white" />
+            <q-list separator class="fit">
+              <q-item dense>
+                <q-item-section>
+
+                  <CardJobDetail class="q-my-xs" v-for="(item, index) in searchResult" :key="item.info.name + index"
+                    :isMinimize="false" :isHot="false" :jobDetail="item"></CardJobDetail>
+                </q-item-section>
+              </q-item>
+              <div class=" flex flex-center">
+                <q-pagination v-model="current" v-if="totalResult != 0" :max="totalResult / 50 + 1" :max-pages="6"
+                  boundary-numbers outline color="negative" active-design="unelevated" active-color="negative"
+                  active-text-color="white" />
+              </div>
+            </q-list>
+
           </div>
-        </q-list>
-
-      </div>
-      <div v-else class="col q-gutter-sm q-mt-xl">
-        <div class="" v-for="(item, index) in Array(20)" :key="'vr-list-' + index">
-          <div class="row ">
-            <q-skeleton type="rect" width="150px" height="150px"></q-skeleton>
-            <div class="q-mx-sm">
-              <q-skeleton type="text" height="32px" width="300px"></q-skeleton>
-              <q-skeleton type="text" height="32px" width="200px"></q-skeleton>
-              <q-skeleton type="text" height="32px" width="200px"></q-skeleton>
+          <div v-else class="col q-gutter-sm ">
+            <div class="" v-for="(item, index) in Array(20)" :key="'vr-list-' + index">
+              <div class="row ">
+                <q-skeleton type="rect" width="150px" height="150px"></q-skeleton>
+                <div class="q-mx-sm">
+                  <q-skeleton type="text" height="32px" width="300px"></q-skeleton>
+                  <q-skeleton type="text" height="32px" width="200px"></q-skeleton>
+                  <q-skeleton type="text" height="32px" width="200px"></q-skeleton>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+        <div class="col-4 q-gutter-xs">
+          <div v-for="(item, index) in Array(4)" :key="index">
+            <a href="https://www.youtube.com/" target="_blank">
+              <q-img  ratio="0.8" fit="fill"
+              :src="'https://loremflickr.com/720/1280/advertisement/all?random='+index" />
+            </a>
+          </div>
+            
         </div>
       </div>
 
@@ -62,7 +78,7 @@ export default {
     let searchResult = [];
     let totalResult = 0;
     let array = [
-    "https://loremflickr.com/1280/720/banner?lock=23423",
+      "https://loremflickr.com/1280/720/banner?lock=23423",
       'https://loremflickr.com/1280/720/banner?lock=55346',
       "https://loremflickr.com/1280/720/banner?lock=12455",
       "https://loremflickr.com/1280/720/banner?lock=75543"
@@ -129,7 +145,7 @@ export default {
       this.loading = true;
       // console.log(pageNumber);
       searchJob({ text, filter, pageNumber, limit: 50 }).then(data => {
-        if(data){
+        if (data) {
           this.searchResult = data.data
           this.totalResult = data.total;
         }

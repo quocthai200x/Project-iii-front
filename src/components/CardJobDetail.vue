@@ -10,7 +10,7 @@
                 </div>
                 <q-card-section class="col-7">
                     <router-link :to="'/viec-lam/' + jobDetail.info.name + '---' + jobDetail.companyId._id">
-                        <div class="text-weight-bold text-length2">
+                        <div class="color-negative text-weight-bold text-length2">
                             {{ jobDetail.info.name }}
                         </div>
                         <q-tooltip :delay="100" anchor="center right" self="center middle">
@@ -18,7 +18,7 @@
                         </q-tooltip>
                     </router-link>
                     <router-link cursor-pointer :to="'/cong-ty/' + jobDetail.companyId.info.name">
-                        <span class="text-caption text-length">{{ jobDetail.companyId.info.name }}</span>
+                        <span class="hover text-caption text-length">{{ jobDetail.companyId.info.name }}</span>
                         <q-tooltip :delay="100" anchor="center middle" self="center end">
                             {{ jobDetail.companyId.info.name }}
                         </q-tooltip>
@@ -47,7 +47,7 @@
                         </q-tooltip>
                     </router-link>
                     <router-link cursor-pointer :to="'/cong-ty/' + jobDetail.companyId.info.name">
-                        <span class="text-caption text-length">{{ jobDetail.companyId.info.name }}</span>
+                        <span class="hover text-caption text-length">{{ jobDetail.companyId.info.name }}</span>
                         <q-tooltip :delay="100" anchor="center middle" self="center end">
                             {{ jobDetail.companyId.info.name }}
                         </q-tooltip>
@@ -158,7 +158,7 @@ export default {
 
 
 .big-card {
-    width: 620px;
+    // width: 620px;
 }
 
 ;
@@ -189,8 +189,12 @@ export default {
 }
 
 
-.color-negative {
-    color: red;
+// .color-negative {
+//     color: red;
+// }
+.hover:hover {
+  transition: 200ms all;
+  color: $warning
 }
 
 .color-negative:hover {
