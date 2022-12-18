@@ -40,7 +40,7 @@
     </q-page>
 </template>
 <script>
-import { regiserUser } from "@/apis/auth"
+import { regiserUser, getMe } from "@/apis/auth"
 import { useUserStore } from "@/stores/userStore"
 import LayoutFake from "@/layouts/LayoutFake.vue"
 import { getAllApplicationIn_User } from '@/apis/application'
