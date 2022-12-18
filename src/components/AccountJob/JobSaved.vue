@@ -57,14 +57,11 @@
                             </div>
                         </div>
                         <div class="text-grey-6">
-                            <span>
-                                Đã tạo {{ " " }}
-                            </span>
-                            <span v-if="$moment().diff($moment(application.createdAt), 'days') > 0">
-                                {{ $moment().diff($moment(application.createdAt), 'days') + "ngày trước" }}
+                            <span v-if="$moment(application.info.outdate).diff($moment(), 'days') > 0">
+                                Còn {{ $moment(application.info.outdate).diff($moment(), 'days') + " ngày ứng tuyển" }}
                             </span>
                             <span v-else>
-                                trong hôm nay
+                                 Đã hết hạn tuyển
                             </span>
                         </div>
                     </div>
@@ -83,7 +80,9 @@ import { ref } from "vue"
 export default {
     props: { jobSaved: Array, showPerPage: Number },
     data() {
+     
         return {
+            
             pageNumber: ref(1),
         }
     }

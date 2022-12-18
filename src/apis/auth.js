@@ -5,7 +5,9 @@ export const login = async ({ email, password }) => {
         let res = await axios.post('/auth/login', { email, password })
         // console.log(res)
         if (res.status == 200) {
-            // axios.defaults.headers.common['Authorization'] = "Bearer " + res.data.token;
+          
+            axios.defaults.headers.common['Authorization'] = "Bearer " + res.data.token;
+            localStorage.setItem("session", res.data.token)
             return res.data
         } else {
             throw new Error(res.data.code)
@@ -75,6 +77,9 @@ export const regiserUser = async ({ email, password, name, phone }) => {
 
 export const getMe = async () => {
     try {
+        if(localStorage.getItem('session')){
+            axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem('session');
+        }
         let res = await axios.get('/auth/me');
         if (res.status == 200) {
             return res.data

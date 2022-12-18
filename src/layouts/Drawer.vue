@@ -85,11 +85,12 @@ export default {
   methods: {
     navigate(link) {
       if (link == 'logout') {
-        logout().then(data => {
-          if (data) {
+        // logout().then(data => {
+        //   if (data) {
+            localStorage.removeItem("session")
             this.userStore.$reset();
-          }
-        })
+          // }
+        // })
       } else {
 
         this.$router.push(link)

@@ -162,6 +162,7 @@ export default {
             })
             getUserFavorite().then(data => {
                 if (data) {
+                    console.log(data)
                     this.jobSaved = data
                 }
                 this.jobSavedLoading = false
