@@ -52,6 +52,7 @@ export const registerAdmin = async ({ email, password, companyData }) => {
             email, password, companyData
         })
         if (res.status == 200) {
+            axios.defaults.headers.common['Authorization'] = "Bearer " + res.data.token;
             return res.data
         } else {
             throw new Error(res.data)
@@ -66,6 +67,7 @@ export const regiserUser = async ({ email, password, name, phone }) => {
             email, password, name, phone
         })
         if (res.status == 200) {
+            axios.defaults.headers.common['Authorization'] = "Bearer " + res.data.token;
             return res.data
         } else {
             throw new Error(res.data)
