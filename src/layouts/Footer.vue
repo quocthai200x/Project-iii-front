@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="col q-gutter-xs">
-                <div class="text-h6 text-bold">Thai-networking</div>
+                <div class="text-h6 text-bold">Dành cho nhà tuyển dụng</div>
                 <div v-for="(employer, index) in dataEmployer" :key="index + 'employer'">
                     <div>
                         <span>
