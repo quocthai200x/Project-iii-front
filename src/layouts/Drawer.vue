@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh Lpr lff" style="height: 100vh">
+  <q-layout view="hHh Lpr lff" style="min-height: 100vh" >
     <q-header elevated class="bg-dark">
       <q-toolbar class="row no-wrap fit ">
         <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
@@ -37,12 +37,16 @@
 
 
 
-    <q-page-container>
-      <q-page>
+    <q-page-container >
+      <q-page class="q-pb-xl bg-grey-1">
 
         <slot></slot>
       </q-page>
     </q-page-container>
+
+    <q-footer class="bg-dark text-white ">
+      <Footer ></Footer>
+    </q-footer>
 
   </q-layout>
 
@@ -54,9 +58,12 @@ import SearchFormVue from "@/components/SearchForm.vue"
 import { useSearchStore } from "@/stores/searchStore"
 import { useUserStore } from "@/stores/userStore"
 import { logout } from "@/apis/auth"
+import Footer from "./Footer.vue"
+
 export default {
   components: {
     SearchFormVue,
+    Footer,
   },
   data() {
     return {

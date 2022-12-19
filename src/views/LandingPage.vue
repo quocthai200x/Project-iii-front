@@ -6,21 +6,23 @@
       <CarouselBannerVue :arrayImage="array"></CarouselBannerVue>
       <q-page padding>
         <h5 class="text-weight-bold">Top công ty nổi bật</h5>
-        <div v-if="!loadingTopCompany" class="fit row">
-          <q-card  non-selectable class="col-2 my-card hover my-top-company q-pr-xs" v-for="(company, index) in companyTop"
-            :key="'top-company-' + index">
+        <div v-if="!loadingTopCompany" class="fit row wrap justify-center">
+          <div  v-for="(company, index) in companyTop"
+            :key="'top-company-' + index" class="col-2 q-pr-md  ">
+            <q-card  non-selectable class="fit my-card hover my-top-company " style="width:100%;">
             <router-link :to="'/cong-ty/' + company.info.name">
               <span class="q-focus-helper"></span>
-              <q-card-section>
-                <q-img fit='fill' loading="lazy" width="200px" :ratio="1" :src="company.info.logo">
+              <q-card-section  >
+                <q-img class="bg-grey-6" fit='fill' loading="lazy" width="100%" :ratio="1" :src="company.info.logo">
                 </q-img>
-                <div class="q-mt-sm q-mb-sm text-weight-bold text-subtitle2 text-center">
+                <div class="q-mt-sm text-weight-bold text-subtitle2 text-center">
                   {{ company.info.name }}
                 </div>
               </q-card-section>
             </router-link>
           </q-card>
-
+        </div>
+          
         </div>
         <div v-else class="row q-gutter-md">
           <div v-for="(fake, index) in Array(6)" :key="index+ 'fake'" class="col justify-center items-center">

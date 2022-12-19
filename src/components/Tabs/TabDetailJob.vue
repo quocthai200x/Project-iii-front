@@ -40,6 +40,15 @@
                 </div>
 
             </div>
+            <div class="q-mb-xl" v-if="jobDetail.info.recruitmentProcess.length > 0">
+                <div class="text-h5 q-mb-xs">Quy trình phỏng vấn</div>
+                <div v-for="(item, indexJDre) in jobDetail.info.recruitmentProcess" :key="indexJDre+'jd-re'">
+                    <span>{{indexJDre + 1  + ". "}}</span>
+                    <span>
+                        {{ item.name }}
+                    </span>
+                </div>
+            </div>
             <div class='q-mb-xl'>
                 <div class="text-h6 q-mb-xs">Từ khóa</div>
                 <div class="row">
