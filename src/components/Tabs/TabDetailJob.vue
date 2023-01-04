@@ -138,11 +138,7 @@
             <div class="col map q-mt-xl">
                 <GMapMap v-for="(workingAdd, index) in jobDetail.info.workingAddress" :key="'map-'+index" :center="{ lat: workingAdd.latitude, lng: workingAdd.longitude }" :zoom="100" map-type-id="terrain"
                     style="width: 100%; height: 400px">
-                    <!-- <GMapMarker :key="{
-                        position: {
-                            lat: 51.093048, lng: 6.842120
-                        },
-                    }" /> -->
+                    <GMapMarker :position="{lat: workingAdd.latitude, lng: workingAdd.longitude}"  />
                 </GMapMap>
             </div>
         </div>

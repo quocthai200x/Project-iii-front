@@ -103,10 +103,12 @@ export default {
       } else {
         this.$router.push(`/viec-lam?pageNumber=${this.searchStore.pageNumber}`)
       }
+      
       this._getSearch({ text: this.searchStore.text, filter: this.searchStore.filter, pageNumber: this.searchStore.pageNumber })
     },
     current(newValue, oldValue) {
       this.searchStore.setPageNumberValue(newValue - 1)
+     
       this.searchStore.setToggle()
     }
   },
@@ -125,12 +127,16 @@ export default {
       text = arr[0];
       let index = 1;
       if (arr[index] && q.includes('--tai--')) {
-        filter["info.workingAddress.province"] = arr[index].split(',')
+        let any =  arr[index].split(',')
+        filter["info.workingAddress.province"] =any
+        this.searchStore.filter['info.workingAddress.province'] = any
         index++;
       }
-
+      
       if (arr[index] && q.includes('--nganh--')) {
-        filter["info.type.name"] = arr[index].split(',')
+        let any =  arr[index].split(',')
+        filter["info.type.name"] =  any
+        this.searchStore.filter['info.type.name'] =  any
 
       }
     }

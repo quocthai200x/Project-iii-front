@@ -18,13 +18,13 @@
                 <div v-else>
                     Công ty chưa cập nhật ngành nghề
                 </div>
-                <div class="row" v-if="companyData.info.size">
+                <div class="row" v-if="companyData.info.size.label">
                     <div class="col-3 text-bold">
                         <span>Quy mô </span>
                     </div>
                     <div class="col-9">
 
-                        <span>{{ companyData.info.size + " nhân viên" }}</span>
+                        <span>{{ companyData.info.size.label + " nhân viên" }}</span>
                     </div>
 
                 </div>

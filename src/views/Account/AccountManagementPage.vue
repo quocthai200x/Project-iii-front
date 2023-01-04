@@ -11,6 +11,7 @@
                         <QuickIntroCardVue></QuickIntroCardVue>
                         <PersonnalInfoCardVue></PersonnalInfoCardVue>
                         <TargetDescriptionCardVue></TargetDescriptionCardVue>
+                        <TypeWorkingCardVue></TypeWorkingCardVue>
                         <ExperiencesCardVue></ExperiencesCardVue>
                         <StudyCardVue></StudyCardVue>
                         <SkillCardVue></SkillCardVue>
@@ -33,6 +34,7 @@ import SkillCardVue from '@/components/AccountManagement/SkillCard.vue';
 import StudyCardVue from '@/components/AccountManagement/StudyCard.vue';
 import TargetDescriptionCardVue from '@/components/AccountManagement/TargetDescriptionCard.vue';
 import LanguageCardVue from '@/components/AccountManagement/LanguageCard.vue';
+import TypeWorkingCardVue from '../../components/AccountManagement/TypeWorkingCard.vue';
 
 import DrawerVue from '@/layouts/Drawer.vue';
 
@@ -46,7 +48,8 @@ export default {
         ExperiencesCardVue,
         StudyCardVue,
         SkillCardVue,
-        LanguageCardVue
+        LanguageCardVue,
+        TypeWorkingCardVue
     },
     data() {
         return {

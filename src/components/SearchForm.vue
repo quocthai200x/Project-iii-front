@@ -80,6 +80,7 @@ export default {
                 }
             }
             this.searchStore.setFilterValue(filter)
+            this.searchStore.pageNumber = 0;
             let filterProvince = this.searchStore.filter['info.workingAddress.province'] ? this.searchStore.filter['info.workingAddress.province'] : ""
             let filterTypeJob = this.searchStore.filter['info.type.name'] ? this.searchStore.filter['info.type.name'] : ""
             if (filterTypeJob) {
