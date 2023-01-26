@@ -12,16 +12,25 @@
         <button @click="_getAllSKills">Get All Skills</button>
 
     </div>
+    <div>
+        <button @click="_create1kUser_">Create 1k User</button>
+        <button @click="_getAllUserEmail_">get all User email</button>
+        <button @click="_changeUserInfo_">change User email Info</button>
+
+
+    </div>
 </template>
 <script>
-import { login, getMe, registerAdmin } from "@/apis/auth"
-import { getAllEmailCompany } from "@/apis/user"
+import { login, getMe, registerAdmin, regiserUser } from "../apis/auth"
+import { getAllEmailCompany, getAllUserEmail, updateUserInfo } from "../apis/user"
 import { createJob } from "@/apis/job"
 import { getAllSkills } from "@/apis/test"
 
 
 import { faker } from '@faker-js/faker';
-import { jobDictionary } from "@/assets/dictionary/job"
+import { jobDictionary } from "../assets/dictionary/job"
+import { locationDictionary } from "../assets/dictionary/location"
+
 export default {
     data() {
         return {
@@ -32,13 +41,96 @@ export default {
         }
     },
     methods: {
-        _getAllSKills(){
-            getAllSkills().then(data=>console.log(data))
+        _getAllUserEmail_() {
+            getAllUserEmail().then(data => {
+                this.emails = data
+            })
+        },
+        _changeUserInfo_() {
+            for (let i = 0; i < this.emails.length; i++) {
+                login({ email: this.emails[i].email, password: "Thai123456" }).then(data => {
+                    // console.log(data);
+                    let random = Math.floor(Math.random() * 3) + 3;
+                    let randomProvince = Math.floor(Math.random() * locationDictionary.length)
+                    let randomDistrict = Math.floor(Math.random() * locationDictionary[randomProvince].level2s.length)
+                    let randomWard = Math.floor(Math.random() * (locationDictionary[randomProvince].level2s[randomDistrict].level3s.length))
+
+                    for (let index = 0; index < random; index++) {
+                        let level = this._randomProperty(jobDictionary.level)
+                        const provinces = ["Thành phố Hà Nội", "Thành phố Hồ Chí Minh"];
+                        const districts = ['Quận Ba Đình', 'Quận Long Biên', 'Quận Tây Hồ', 'Quận Hoàn Kiếm', 'Quận Hai Bà Trưng'];
+                        const wards = ['Phường Bách Khoa', 'Phường Phúc Xá', 'Phường Trúc Bạch', 'Phường Vĩnh Phúc', "Phường Bách Khoa"]
+                        const random2 = Math.floor(Math.random() * provinces.length);
+                        const salaryRate = this._randomSalaryRate();
+                        const randomKeyword = this._randomKeyword();
+                        let userInfo = {
+                            name: faker.name.fullName(),
+                            positionPresent: faker.name.jobTitle(),
+                            levelPresent: "Thực tập sinh",
+                            typeWorking: this._randomArrayWorkingArea(),
+                            yearExperienced: random,
+                            workingLocationTarget: provinces[random2],
+                            educationLevel: "Thạc sĩ",
+                            salaryTarget: random * random2 * 100,
+                            phone: faker.phone.number('08########'),
+                            allowSearchInfo: true,
+                            address: faker.address.streetAddress(),
+                            country: "Việt Nam",
+                            city: locationDictionary[randomProvince].name,
+                            district: locationDictionary[randomProvince].level2s[randomDistrict].name,
+                            ward: locationDictionary[randomProvince].level2s[randomDistrict].level3s[randomWard].name,
+                            CV: "string.pdf",
+                            skills: this._randomSkill(),
+                            avatar: faker.internet.avatar(),
+                            dob: faker.date.between('1990-11-29T00:00:00.000Z', '2000-01-06T00:00:00.000Z'),
+
+                            desc: faker.lorem.words(200),
+                            experiences: this._randomExperience(),
+                            education: this._randomEducation(),
+                            foreignLanguage: [
+                                {
+                                    name: "Tiếng Anh",
+                                    level: "B2",
+                                    certificate: "pdf.pdf"
+                                },
+                            ],
+                           
+                        }
+                        updateUserInfo(userInfo).then(res => this.message = this.emails[i].email)
+
+                    }
+
+                })
+
+            }
+        },
+        _create1kUser_() {
+            let email, password, name, phone;
+            for (let i = 0; i < 1000; i++) {
+                email = faker.internet.email(),
+                    password = "Thai123456",
+                    name = faker.name.fullName(),
+                    phone = faker.phone.number('08########')
+
+
+                regiserUser({ email, password, name, phone }).then(data => {
+                    if (data) {
+                        this.message = email
+                    } else {
+                        this.message = "Lỗi"
+                    }
+                })
+
+            }
+
+        },
+        _getAllSKills() {
+            getAllSkills().then(data => console.log(data))
         },
         _getAllEmailCompany_() {
             getAllEmailCompany().then(data => {
                 this.emails = data
-                this.emails.forEach(email=>{
+                this.emails.forEach(email => {
                     console.log(email.email)
                 })
             })
@@ -47,48 +139,48 @@ export default {
         _createJobWith10KCompany_() {
             for (let i = 0; i < this.emails.length; i++) {
                 login({ email: this.emails[i].email, password: "123456" }).then(data => {
-                // console.log(data);
-                let random = Math.floor(Math.random() * 3) + 3;
-                for (let index = 0; index < random; index++) {
-                    let level = this._randomProperty(jobDictionary.level)
-                    const provinces = ["Thành phố Hà Nội", "Tỉnh Hà Giang", "Tỉnh Cao Bằng", "Tỉnh Bắc Kạn", 'Tỉnh Điện Biên'];
-                    const districts = ['Quận Ba Đình', 'Quận Long Biên', 'Quận Tây Hồ', 'Quận Hoàn Kiếm', 'Quận Hai Bà Trưng'];
-                    const wards = ['Phường Bách Khoa', 'Phường Phúc Xá', 'Phường Trúc Bạch', 'Phường Vĩnh Phúc', "Phường Bách Khoa"]
-                    const random2 = Math.floor(Math.random() * provinces.length);
-                    const salaryRate = this._randomSalaryRate();
-                    const randomKeyword = this._randomKeyword();
-                    let jobData = {
-                        name: faker.name.jobTitle(),
-                        level: level,
-                        type: this._randomArrayWorkingArea(),
-                        workingAddress: {
-                            address: "Số 15 ngõ 84 phố Võ Thị Sáu",
-                            district: districts[random2],
-                            ward: wards[random2],
-                            province: provinces[random2],
-                            latitude: faker.address.latitude(),
-                            longitude: faker.address.longitude(),
-                        },
-                        desc: faker.lorem.words(200),
-                        requirement: faker.lorem.words(200),
-                        salaryRate: salaryRate,
-                        keyword: randomKeyword,
-                        languageRecruitment: ["Tiếng Việt", "Tiếng Anh"],
-                        emailReceive: [],
-                        outdate: faker.date.between('2022-11-29T00:00:00.000Z', '2023-01-06T00:00:00.000Z')
+                    // console.log(data);
+                    let random = Math.floor(Math.random() * 3) + 3;
+                    for (let index = 0; index < random; index++) {
+                        let level = this._randomProperty(jobDictionary.level)
+                        const provinces = ["Thành phố Hà Nội", "Tỉnh Hà Giang", "Tỉnh Cao Bằng", "Tỉnh Bắc Kạn", 'Tỉnh Điện Biên'];
+                        const districts = ['Quận Ba Đình', 'Quận Long Biên', 'Quận Tây Hồ', 'Quận Hoàn Kiếm', 'Quận Hai Bà Trưng'];
+                        const wards = ['Phường Bách Khoa', 'Phường Phúc Xá', 'Phường Trúc Bạch', 'Phường Vĩnh Phúc', "Phường Bách Khoa"]
+                        const random2 = Math.floor(Math.random() * provinces.length);
+                        const salaryRate = this._randomSalaryRate();
+                        const randomKeyword = this._randomKeyword();
+                        let jobData = {
+                            name: faker.name.jobTitle(),
+                            level: level,
+                            type: this._randomArrayWorkingArea(),
+                            workingAddress: {
+                                address: "Số 15 ngõ 84 phố Võ Thị Sáu",
+                                district: districts[random2],
+                                ward: wards[random2],
+                                province: provinces[random2],
+                                latitude: faker.address.latitude(),
+                                longitude: faker.address.longitude(),
+                            },
+                            desc: faker.lorem.words(200),
+                            requirement: faker.lorem.words(200),
+                            salaryRate: salaryRate,
+                            keyword: randomKeyword,
+                            languageRecruitment: ["Tiếng Việt", "Tiếng Anh"],
+                            emailReceive: [],
+                            outdate: faker.date.between('2022-11-29T00:00:00.000Z', '2023-01-06T00:00:00.000Z')
 
+
+                        }
+                        createJob(jobData).then(res => this.message = email + " ---- " + res.info.name)
 
                     }
-                    createJob(jobData).then(res => this.message = email + " ---- "+res.info.name)
 
-                }
+                })
 
-            })
-                
             }
-            
+
         },
-        
+
         _randomProperty(obj) {
             let keys = Object.keys(obj);
             return obj[keys[keys.length * Math.random() << 0]];
@@ -213,6 +305,50 @@ export default {
             }
             return array;
         },
+        _randomSkill() {
+            let array = [];
+            for (let index = 0; index < 4; index++) {
+                let skill = jobDictionary.skills[Math.floor(Math.random() * jobDictionary.skills.length)];
+                while (array.includes(skill)) {
+                    skill = jobDictionary.skills[Math.floor(Math.random() * jobDictionary.skills.length)];
+                }
+                array.push(skill)
+            }
+            return array
+        },
+
+
+        _randomEducation() {
+            let randomSize = Math.floor(Math.random() * 2) + 1;
+            let array = [];
+            for (let index = 0; index < randomSize; index++) {
+                array.push({
+                    major: faker.name.jobTitle(),
+                    college: faker.company.name() + " University",
+                    certificate: "Kỹ sư",
+                    from: faker.date.between('2010-11-29T00:00:00.000Z', '2013-01-06T00:00:00.000Z'),
+                    to: faker.date.between('2013-11-29T00:00:00.000Z', '2018-01-06T00:00:00.000Z'),
+
+                    desc: faker.lorem.words(100),
+                })
+            }
+            return array
+        },
+        _randomExperience() {
+            let randomSize = Math.floor(Math.random() * 2) + 1;
+            let array = [];
+            for (let index = 0; index < randomSize; index++) {
+                array.push({
+                    position: faker.name.jobTitle(),
+                    company: faker.company.name(),
+                    from: faker.date.between('2010-11-29T00:00:00.000Z', '2013-01-06T00:00:00.000Z'),
+                    to: faker.date.between('2013-11-29T00:00:00.000Z', '2018-01-06T00:00:00.000Z'),
+                    isWorking: false,
+                    desc: faker.lorem.words(100),
+                })
+            }
+            return array
+        }
     },
 }
 </script>

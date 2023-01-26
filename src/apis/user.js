@@ -26,6 +26,19 @@ export const getAllEmailCompany = async () => {
     }
 }
 
+export const getAllUserEmail = async () => {
+    try {
+        let res = await axios.get('/user/get-all-user-email')
+        if (res.status == 200) {
+            return res.data
+        } else {
+            throw new Error(res.data)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 export const updateUserInfo = async (data) => {
     try {
