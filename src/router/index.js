@@ -64,11 +64,11 @@ const routes = [
         name: "Company Detail",
         component: ()=> import('../views/Company/CompanyDetailPage.vue')
     },
-    {
-        path: '/test',
-        name: "Test",
-        component: () => import('../views/TestPage.vue')
-    },
+    // {
+    //     path: '/test',
+    //     name: "Test",
+    //     component: () => import('../views/TestPage.vue')
+    // },
 
 ]
 
