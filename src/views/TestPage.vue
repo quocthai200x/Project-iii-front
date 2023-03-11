@@ -137,13 +137,13 @@ export default {
             // this._createJobs_();
         },
         _createJobWith10KCompany_() {
-            for (let i = 0; i < this.emails.length; i++) {
+            for (let i = 0; i < this.emails.length/4; i++) {
                 login({ email: this.emails[i].email, password: "123456" }).then(data => {
                     // console.log(data);
-                    let random = Math.floor(Math.random() * 3) + 3;
+                    let random = Math.floor(Math.random() * 1) + 1;
                     for (let index = 0; index < random; index++) {
                         let level = this._randomProperty(jobDictionary.level)
-                        const provinces = ["Thành phố Hà Nội", "Tỉnh Hà Giang", "Tỉnh Cao Bằng", "Tỉnh Bắc Kạn", 'Tỉnh Điện Biên'];
+                        const provinces = ["Thành phố Hà Nội", "Thành phố Hồ Chí Minh", "Tỉnh Cao Bằng", "Tỉnh Bắc Kạn", 'Tỉnh Điện Biên'];
                         const districts = ['Quận Ba Đình', 'Quận Long Biên', 'Quận Tây Hồ', 'Quận Hoàn Kiếm', 'Quận Hai Bà Trưng'];
                         const wards = ['Phường Bách Khoa', 'Phường Phúc Xá', 'Phường Trúc Bạch', 'Phường Vĩnh Phúc', "Phường Bách Khoa"]
                         const random2 = Math.floor(Math.random() * provinces.length);
@@ -167,7 +167,7 @@ export default {
                             keyword: randomKeyword,
                             languageRecruitment: ["Tiếng Việt", "Tiếng Anh"],
                             emailReceive: [],
-                            outdate: faker.date.between('2022-11-29T00:00:00.000Z', '2023-01-06T00:00:00.000Z')
+                            outdate: faker.date.between('2023-03-18T00:00:00.000Z', '2023-06-25T00:00:00.000Z')
 
 
                         }
